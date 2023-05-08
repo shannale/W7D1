@@ -28,7 +28,10 @@ class User < ApplicationRecord
 
     private
     def generate_unique_session_token
-        self.session_token ||= SecureRandom::url_safe_base64
+        loop do 
+        session_token = SecureRandom::url_safe_base64
+        return session_token unless User.exists?(session_token: session_token)
+        end
     end
 
     def ensure_session_token
