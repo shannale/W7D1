@@ -10,6 +10,7 @@ class UsersController < ApplicationController
         if @user.save
             redirect_to cats_url
         else 
+            debugger
             render :new 
         end 
     end
